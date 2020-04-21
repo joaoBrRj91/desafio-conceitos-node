@@ -31,7 +31,7 @@ app.get("/repositories", (request, response) => {
 app.post("/repositories", (request, response) => {
 
   const {title, url, techs} = request.body;
-  const repository = {id: uuid(), title, url, techs, like: 0};
+  const repository = {id: uuid(), title, url, techs, likes: 0};
   repositories.push(repository);
   return response.json(repository);
 
@@ -61,7 +61,7 @@ app.delete("/repositories/:id", (request, response) => {
 app.post("/repositories/:id/like", validateRepositoryExist, (request, response) => {
 
    const repository = repositories[request.repositoryIndex];
-   repository.like = ++repository.like;
+   repository.likes = ++repository.likes;
    return response.json(repository);
 
 });
